@@ -31,7 +31,7 @@
                       <i class="material-icons">face</i>
                   </span>
                 </div>
-                <input type="text" name="name" class="form-control" placeholder="{{ __('Name...') }}" value="{{ old('name') }}" required>
+                <input type="text" name="name" class="form-control" placeholder="{{ __('Name...') }}" value="{{ old('name') }}" required autocomplete="name">
               </div>
               @if ($errors->has('name'))
                 <div id="name-error" class="error text-danger pl-3" for="name" style="display: block;">
@@ -39,6 +39,23 @@
                 </div>
               @endif
             </div>
+            {{-- username --}}
+            <div class="bmd-form-group{{ $errors->has('username') ? ' has-danger' : '' }} mt-3">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="material-icons">fingerprint</i>
+                    </span>
+                  </div>
+                  <input type="text" name="username" class="form-control" placeholder="{{ __('UserName...') }}" value="{{ old('username') }}" required autocomplete="username">
+                </div>
+                @if ($errors->has('username'))
+                  <div id="username-error" class="error text-danger pl-3" for="username" style="display: block;">
+                    <strong>{{ $errors->first('username') }}</strong>
+                  </div>
+                @endif
+              </div>
+
             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }} mt-3">
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -46,7 +63,7 @@
                     <i class="material-icons">email</i>
                   </span>
                 </div>
-                <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email') }}" required>
+                <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email') }}" required autocomplete="email">
               </div>
               @if ($errors->has('email'))
                 <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
@@ -61,7 +78,7 @@
                     <i class="material-icons">lock_outline</i>
                   </span>
                 </div>
-                <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" required>
+                <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" required autocomplete="new-password">
               </div>
               @if ($errors->has('password'))
                 <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
@@ -76,7 +93,7 @@
                     <i class="material-icons">lock_outline</i>
                   </span>
                 </div>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Confirm Password...') }}" required>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Confirm Password...') }}" required autocomplete="new-password">
               </div>
               @if ($errors->has('password_confirmation'))
                 <div id="password_confirmation-error" class="error text-danger pl-3" for="password_confirmation" style="display: block;">
