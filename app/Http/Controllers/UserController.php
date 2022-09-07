@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserEditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -35,14 +37,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
-        $request->validate([
-            'name' => 'required|min:3|max:50',
-            'username' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required'
-        ]);
+        // $request->validate([
+        //     'name' => 'required|min:3|max:50',
+        //     'username' => 'required',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'required'
+        // ]);
         $user = User::create([
             'name' => $request['name'],
             'username' => $request['username'],
@@ -82,7 +84,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserEditRequest $request, User $user)
     {
         $data = $request->only('name', 'username', 'email');
         $password = $request->input('password');
